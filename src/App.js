@@ -6,6 +6,7 @@ import Logo from './components/Logo/Logo'
 import Rank from './components/Rank/Rank';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+
 import './App.css';
 
 
@@ -55,7 +56,6 @@ class App extends Component {
         this.setState({box: box});
     };
 
-
     onInputChange = (event) => {
         this.setState({input: event.target.value})
     };
@@ -80,8 +80,8 @@ class App extends Component {
                     onInputChange={this.onInputChange}
                     onButtonSubmit={this.onButtonSubmit}
                 />
-                <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
 
+                <FaceRecognition box={this.state.box} imageUrl={this.state.imageUrl}/>
 
             </div>
         );
