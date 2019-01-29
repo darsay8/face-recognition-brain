@@ -16,6 +16,7 @@ const app = new Clarifai.App({
     apiKey: 'd7fbe7b63787459db6271b0dfcbf788e'
 });
 
+// PARTICLES BG
 const particlesOptions = {
     particles: {
         number: {
@@ -41,6 +42,14 @@ class App extends Component {
         }
     }
 
+    /*// FETCH API
+    componentDidMount() {
+        fetch('http://localhost:3001/')
+            .then(response => response.json())
+            .then(data => console.log(data));
+    }*/
+
+    // CALCULATE FACE LOCATION
     calculateFaceLocation = (data) => {
 
         const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
@@ -56,14 +65,17 @@ class App extends Component {
         }
     };
 
+    // DISPLAY FACE BOX
     displayFaceBox = (box) => {
         this.setState({box: box});
     };
 
+    // INPUT IMAGE LINK
     onInputChange = (event) => {
         this.setState({input: event.target.value})
     };
 
+    // SUBMIT IMAGE LINK
     onButtonSubmit = () => {
         this.setState({imageUrl: this.state.input});
         app.models.predict(
@@ -73,6 +85,7 @@ class App extends Component {
                 .catch(err => console.log(err)));
     };
 
+    // ROUTE CHANGE
     onRouteChange = (route) => {
         if (route === 'signout') {
             this.setState({isSignedIn: false})
