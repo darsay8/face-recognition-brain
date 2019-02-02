@@ -30,6 +30,22 @@ const particlesOptions = {
     }
 };
 
+const initialState = {
+    input: '',
+    imageUrl: '',
+    box: {},
+    route: 'signin',
+    isSignedIn: false,
+    user: {
+        id: '',
+        name: '',
+        email: '',
+        entries: 0,
+        joined: ''
+    }
+};
+
+
 class App extends Component {
     constructor() {
         super();
@@ -98,7 +114,8 @@ class App extends Component {
     // SUBMIT IMAGE LINK
     onPictureSubmit = () => {
         this.setState({imageUrl: this.state.input});
-        app.models.predict(
+        app.models
+            .predict(
             Clarifai.FACE_DETECT_MODEL,
             this.state.input)
             .then(response => {
@@ -116,6 +133,7 @@ class App extends Component {
                                 this.setState(Object.assign(
                                     this.state.user, {entries: count}))
                             })
+                            .catch(console.log)
                     }
                     this.displayFaceBox(this.calculateFaceLocation(response))
                 }
@@ -126,7 +144,7 @@ class App extends Component {
     // ROUTE CHANGE
     onRouteChange = (route) => {
         if (route === 'signout') {
-            this.setState({isSignedIn: false})
+            this.setState(initialState)
         } else if (route === 'home') {
             this.setState({isSignedIn: true})
         }
