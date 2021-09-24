@@ -1,0 +1,64 @@
+@use '../abstracts' as *;
+
+.btn {
+  &,
+  &:link,
+  &:visited {
+    font-family: $font-opensans-bold;
+    font-weight: $font-bold;
+    border-radius: 2px;
+    padding: 1rem 2rem;
+    transition: all 0.2s;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    border: none;
+  }
+
+  &:hover {
+    transform: translateY(-0.3rem);
+    box-shadow: 0 1rem 2rem rgba($color-black, 0.2);
+
+    &::after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+
+  &:active,
+  &:focus {
+    outline: none;
+    transform: translateY(-1px);
+    box-shadow: 0 0.5rem 1rem rgba($color-black, 0.2);
+  }
+
+  &--blue {
+    background-color: $color-cornflower-blue;
+    color: $color-white;
+
+    &::after {
+      background-color: $color-cornflower-blue;
+    }
+  }
+
+  &--text {
+    background-color: none;
+    text-transform: none;
+    font-weight: $font-regular;
+    border-radius: 0;
+    padding: none;
+
+    &:hover {
+      transform: none;
+      box-shadow: none;
+      color: $color-cornflower-blue;
+
+      &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        opacity: 0;
+      }
+    }
+  }
+}

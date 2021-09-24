@@ -1,28 +1,19 @@
 const Navigation = ({ onRouteChange, isSignedIn }) => {
   if (isSignedIn) {
     return (
-      <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <p
-          onClick={() => onRouteChange('signout')}
-          className="b ph3 pv2 input-reset bg-blue white grow pointer f4 dib"
-        >
+      <nav className="navigation">
+        <p onClick={() => onRouteChange('signout')} className="btn btn--blue">
           Sign Out
         </p>
       </nav>
     )
   } else {
     return (
-      <nav style={{ display: 'flex', justifyContent: 'flex-end' }}>
-        <p
-          onClick={() => onRouteChange('signin')}
-          className="b ph3 pv2 input-reset bg-blue white grow pointer f4 dib"
-        >
-          Sign in
+      <nav className="navigation">
+        <p onClick={() => onRouteChange('signin')} className="btn btn--blue">
+          Sign In
         </p>
-        <p
-          onClick={() => onRouteChange('register')}
-          className="b ph3 pv2 input-reset bg-blue white grow pointer f4 dib"
-        >
+        <p onClick={() => onRouteChange('register')} className="btn btn--blue">
           Register
         </p>
       </nav>

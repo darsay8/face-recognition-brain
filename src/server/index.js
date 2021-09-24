@@ -29,21 +29,21 @@ app.get('/api/users', (req, res) => {
     .then((user) => res.json(user))
 })
 
-app.post('/signin', signin.handleSignin(db, bcrypt))
+app.post('/api/signin', signin.handleSignin(db, bcrypt))
 
-app.post('/register', (req, res) => {
+app.post('/api/register', (req, res) => {
   register.handleRegister(req, res, db, bcrypt)
 })
 
-app.get('/profile/:id', (req, res) => {
+app.get('/api/profile/:id', (req, res) => {
   profile.handleProfile(req, res, db)
 })
 
-app.put('/image', (req, res) => {
+app.put('/api/image', (req, res) => {
   entries.handleEntries(req, res, db)
 })
 
-app.post('/image-url', (req, res) => {
+app.post('/api/image-url', (req, res) => {
   entries.handleApiCall(req, res)
 })
 

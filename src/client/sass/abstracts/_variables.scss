@@ -8,6 +8,19 @@ $color-manatee-gray: #8f8f90;
 $color-french-gray: #c7c7c8;
 $color-mercury: #e3e3e3;
 
+$color-azure: #23a4fd;
+$color-sunshine-yellow: #fcf23a;
+$color-orchid: #c175d7;
+
+$color-cornflower-blue: #497cd6;
+
+$bg-gradient: linear-gradient(to right, $color-azure, $color-sunshine-yellow);
+$bg-logo-gradient: linear-gradient(
+  89deg,
+  $color-sunshine-yellow 0%,
+  $color-azure 80%
+);
+
 $font-opensans-light: 'open_sanslight';
 $font-opensans-regular: 'open_sansregular';
 $font-opensans-bold: 'open_sansbold';
@@ -29,18 +42,6 @@ $grid-columns: 12;
 $gap: 1.5rem;
 
 $ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
-
-$z-indexes: (
-  'navigation',
-  'content',
-  'noscript',
-  'preloader',
-  'cursor',
-  'navigation',
-  'content',
-  'cases',
-  'canvas'
-);
 
 $breakpoints: (
   'xs': 0,

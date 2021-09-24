@@ -20,7 +20,7 @@ const Register = ({ loadUser, onRouteChange }) => {
 
   const onSubmitRegister = () => {
     const optionsRegister = {
-      url: '/register',
+      url: '/api/register',
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       data: {
@@ -41,60 +41,64 @@ const Register = ({ loadUser, onRouteChange }) => {
   }
 
   return (
-    <div className="registerForm mt3">
-      <article className="br3 dark-gray shadow-5 mv4 w-100 w-50-m w-25-l mw6 center">
-        <main className="pa4 black-80">
-          <div className="measure">
-            <fieldset id="sign_up" className="ba b--transparent ph0 mh0 white">
-              <legend className="f2 fw6 ph0 mh0">Register</legend>
-              <div className="mt3">
-                <label className="db fw6 lh-copy f4" htmlFor="name">
-                  Name
-                </label>
-                <input
-                  className="pa2 input-reset w-100"
-                  type="text"
-                  name="name"
-                  id="name"
-                  onChange={onNameChange}
-                />
-              </div>
-              <div className="mt3">
-                <label className="db fw6 lh-copy f4" htmlFor="email-address">
-                  Email
-                </label>
-                <input
-                  className="pa2 input-reset w-100"
-                  type="email"
-                  name="email-address"
-                  id="email-address"
-                  onChange={onEmailChange}
-                />
-              </div>
-              <div className="mv3">
-                <label className="db fw6 lh-copy f4" htmlFor="password">
-                  Password
-                </label>
-                <input
-                  className="b pa2 input-reset w-100"
-                  type="password"
-                  name="password"
-                  id="password"
-                  onChange={onPasswordChange}
-                />
-              </div>
-            </fieldset>
-            <div className="">
+    <div className="register__form mt-l">
+      <div className="register__form__container">
+        <form action="" className="form">
+          <h2 className="mb-s">Register</h2>
+          <div className="form__group">
+            <label className="form__label">
+              Name
               <input
-                onClick={onSubmitRegister}
-                className="b ph3 pv2 input-reset bg-blue white grow pointer f4 dib"
-                type="submit"
-                value="Register"
+                type="text"
+                name="name"
+                id="name"
+                onChange={onNameChange}
+                className="form__input"
+                required
               />
-            </div>
+            </label>
+
+            <label className="form__label">
+              Email
+              <input
+                type="email"
+                name="email-address"
+                id="email-address"
+                onChange={onEmailChange}
+                className="form__input"
+                required
+              />
+            </label>
+
+            <label className="form__label">
+              Password
+              <input
+                type="password"
+                name="password"
+                id="password"
+                onChange={onPasswordChange}
+                className="form__input"
+                required
+              />
+            </label>
           </div>
-        </main>
-      </article>
+        </form>
+        <div className="form__submit">
+          <button
+            onClick={onSubmitRegister}
+            className="btn btn--blue"
+            type="submit"
+          >
+            Register
+          </button>
+        </div>
+        <div className="mt-s">
+          <p>Do you have an account already?</p>
+          <p onClick={() => onRouteChange('signin')} className="btn btn--text">
+            Sign In
+          </p>
+        </div>
+      </div>
     </div>
   )
 }

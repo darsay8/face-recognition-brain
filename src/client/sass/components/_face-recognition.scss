@@ -1,8 +1,33 @@
-.bounding-box {
-  position: absolute;
-  box-shadow: inset 0 0 0 3px #149df2;
+.face__recognition {
+  position: relative;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  cursor: pointer;
+  align-items: center;
+
+  &__all {
+    position: absolute;
+    top: 2rem;
+  }
+  &__media {
+    &__image {
+      width: 50rem;
+      height: 80%;
+      border-radius: 5px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+  &__bounding {
+    &__box {
+      position: absolute;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: inset 0 0 0 3px #149df2;
+    }
+  }
 }

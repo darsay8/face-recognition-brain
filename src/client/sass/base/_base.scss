@@ -18,14 +18,12 @@ html {
 }
 
 body {
-  font-family: 'Source Code Pro';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 1.6rem;
   box-sizing: content-box;
   color: $color-mercury;
-  // background-color: $color-dark-shark;
-  background: linear-gradient(to right, rgb(35, 164, 253), rgb(252, 242, 58));
+  background: $bg-gradient;
 }
 
 a:link,
@@ -44,15 +42,6 @@ a:active {
   color: $color-dark-shark;
 }
 
-.App {
-  text-align: center;
-}
-
-.center {
-  display: flex;
-  justify-content: center;
-}
-
 .particles {
   position: fixed;
   top: 0;
@@ -62,6 +51,6 @@ a:active {
   z-index: -1;
 }
 
-button {
-  cursor: pointer;
+.App {
+  height: 150vh;
 }

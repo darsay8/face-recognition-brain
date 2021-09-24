@@ -1,21 +1,14 @@
 const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
   return (
-    <div>
-      <p className="f3 msg white">
-        {'This Magic Brain will detect faces in your pictures. Git it a try.'}
-      </p>
-      <div className="center">
-        <div className="center form pa4 br2 shadow-5">
-          <input
-            className="f4 pa2 w-70 center"
-            type="text"
-            onChange={onInputChange}
-          />
-          <button
-            className="w-30 grow f4 link ph3 pv2 dib white bg-blue"
-            onClick={onButtonSubmit}
-          >
-            {'Detect'}
+    <div className="imagelink__form">
+      <div className="imagelink__form__container">
+        <h4 className="">
+          Paste an image link from the web here and press detect. Git it a try.
+        </h4>
+        <div className="form">
+          <input className="form__input" type="text" onChange={onInputChange} />
+          <button className="btn btn--blue" onClick={onButtonSubmit}>
+            Detect
           </button>
         </div>
       </div>

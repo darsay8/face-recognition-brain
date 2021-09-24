@@ -1,6 +1,22 @@
-.Tilt {
-  background: linear-gradient(89deg, #fcf23a 0%, #23a4fd 80%);
+@use '../abstracts' as *;
 
-  transform-style: preserve-3d;
-  transform: perspective(1000px) translateZ(20px);
+.logo {
+  width: 90%;
+  margin: 0 auto;
+
+  &__tilt {
+    width: 15rem;
+    height: 15rem;
+    background: $bg-logo-gradient;
+    transform-style: preserve-3d;
+    transform: perspective(100rem) translateZ(2rem);
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }

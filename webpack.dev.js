@@ -20,6 +20,7 @@ module.exports = merge(config, {
     },
     // open: true,
     // writeToDisk: true,
+    host: '0.0.0.0',
   },
 
   output: {

@@ -1,3 +1,7 @@
 @use '../abstracts/' as *;
 @use '../vendors/include-media' as *;
 
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
