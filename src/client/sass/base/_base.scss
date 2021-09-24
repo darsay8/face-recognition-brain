@@ -1,0 +1,67 @@
+@use '../abstracts' as *;
+@use '../vendors/include-media' as *;
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px // 10/16 = 62.5
+
+  @include media('<=xl') {
+    font-size: 75%;
+  }
+}
+
+body {
+  font-family: 'Source Code Pro';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.6rem;
+  box-sizing: content-box;
+  color: $color-mercury;
+  // background-color: $color-dark-shark;
+  background: linear-gradient(to right, rgb(35, 164, 253), rgb(252, 242, 58));
+}
+
+a:link,
+a:visited {
+  color: blueviolet;
+  @include transition15;
+}
+
+a:hover,
+a:active {
+  color: #1a86c8;
+}
+
+::selection {
+  background-color: $color-dove-gray;
+  color: $color-dark-shark;
+}
+
+.App {
+  text-align: center;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.particles {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+button {
+  cursor: pointer;
+}

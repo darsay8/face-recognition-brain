@@ -1,6 +1,0 @@
-.Tilt {
-    background: linear-gradient(89deg, #FCF23A 0%, #23A4FD 80%);
-
-    transform-style: preserve-3d;
-    transform: perspective(1000px) translateZ(20px);
-}
