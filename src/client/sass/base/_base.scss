@@ -28,18 +28,18 @@ body {
 
 a:link,
 a:visited {
-  color: blueviolet;
+  color: $color-orchid;
   @include transition15;
 }
 
 a:hover,
 a:active {
-  color: #1a86c8;
+  color: $color-azure;
 }
 
 ::selection {
-  background-color: $color-dove-gray;
-  color: $color-dark-shark;
+  background-color: $color-azure;
+  color: inherit;
 }
 
 .particles {
@@ -49,8 +49,4 @@ a:active {
   bottom: 0;
   left: 0;
   z-index: -1;
-}
-
-.App {
-  height: 150vh;
 }
