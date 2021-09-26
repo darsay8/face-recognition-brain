@@ -41,7 +41,7 @@ const Register = ({ loadUser, onRouteChange }) => {
   }
 
   return (
-    <div className="register__form mt-l">
+    <div className="register__form">
       <div className="register__form__container">
         <form action="" className="form">
           <h2 className="mb-s">Register</h2>

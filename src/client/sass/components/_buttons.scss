@@ -1,4 +1,5 @@
 @use '../abstracts' as *;
+@use '../vendors/include-media' as *;
 
 .btn {
   &,
@@ -15,6 +16,13 @@
     position: relative;
     cursor: pointer;
     border: none;
+    height: 1.8rem;
+    text-align: center;
+  }
+
+  @include media('<=sm') {
+    padding: 0.8rem 1.8rem;
+    font-size: 1.2rem;
   }
 
   &:hover {

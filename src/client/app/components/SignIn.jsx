@@ -35,7 +35,7 @@ const SignIn = ({ loadUser, onRouteChange }) => {
   }
 
   return (
-    <div className="login__form mt-l">
+    <div className="login__form">
       <div className="login__form__container">
         <form action="" className="form">
           <h2 className="mb-s">Sign In</h2>
@@ -74,7 +74,7 @@ const SignIn = ({ loadUser, onRouteChange }) => {
         </div>
 
         <div className="mt-s">
-          <p>Do you haven't a account yet?</p>
+          <p>Do you haven't an account yet?</p>
           <p
             onClick={() => onRouteChange('register')}
             className="btn btn--text"

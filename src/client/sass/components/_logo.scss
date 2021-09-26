@@ -1,8 +1,24 @@
 @use '../abstracts' as *;
+@use '../vendors/include-media' as *;
 
 .logo {
   width: 90%;
   margin: 0 auto;
+
+  @include media('<=xl') {
+    width: 95%;
+  }
+
+  @include media('<=lg') {
+    margin: 0 auto 2rem;
+  }
+
+  @include media('<=sm') {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2rem auto;
+  }
 
   &__tilt {
     width: 15rem;
@@ -10,6 +26,11 @@
     background: $bg-logo-gradient;
     transform-style: preserve-3d;
     transform: perspective(100rem) translateZ(2rem);
+
+    @include media('<=xl') {
+      width: 10rem;
+      height: 10rem;
+    }
   }
 
   &__img {
