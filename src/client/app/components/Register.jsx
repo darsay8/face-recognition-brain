@@ -1,24 +1,21 @@
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
 const Register = ({ loadUser, onRouteChange }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm()
 
-  const onNameChange = (e) => {
-    setName(e.target.value)
-  }
+  const onSubmitRegister = (data) => {
+    const { name, email, password } = data
 
-  const onEmailChange = (e) => {
-    setEmail(e.target.value)
-  }
-
-  const onPasswordChange = (e) => {
-    setPassword(e.target.value)
-  }
-
-  const onSubmitRegister = () => {
     const optionsRegister = {
       url: '/api/register',
       method: 'post',
@@ -43,18 +40,16 @@ const Register = ({ loadUser, onRouteChange }) => {
   return (
     <div className="register__form">
       <div className="register__form__container">
-        <form action="" className="form">
+        <form className="form" onSubmit={handleSubmit(onSubmitRegister)}>
           <h2 className="mb-s">Register</h2>
           <div className="form__group">
             <label className="form__label">
               Name
               <input
                 type="text"
-                name="name"
                 id="name"
-                onChange={onNameChange}
                 className="form__input"
-                required
+                {...register('name', { required: true })}
               />
             </label>
 
@@ -62,11 +57,12 @@ const Register = ({ loadUser, onRouteChange }) => {
               Email
               <input
                 type="email"
-                name="email-address"
-                id="email-address"
-                onChange={onEmailChange}
+                id="email"
                 className="form__input"
-                required
+                {...register('email', {
+                  required: true,
+                  pattern: /^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/,
+                })}
               />
             </label>
 
@@ -74,24 +70,17 @@ const Register = ({ loadUser, onRouteChange }) => {
               Password
               <input
                 type="password"
-                name="password"
                 id="password"
-                onChange={onPasswordChange}
                 className="form__input"
-                required
+                {...register('password', { required: true })}
               />
             </label>
           </div>
+          <div className="form__submit">
+            <input type="submit" className="btn btn--blue" value="Register" />
+          </div>
         </form>
-        <div className="form__submit">
-          <button
-            onClick={onSubmitRegister}
-            className="btn btn--blue"
-            type="submit"
-          >
-            Register
-          </button>
-        </div>
+
         <div className="mt-s">
           <p>Do you have an account already?</p>
           <p onClick={() => onRouteChange('signin')} className="btn btn--text">

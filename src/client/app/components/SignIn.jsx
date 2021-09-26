@@ -1,26 +1,27 @@
 import { useState } from 'react'
+import { useForm } from 'react-hook-form'
 import axios from 'axios'
 
 const SignIn = ({ loadUser, onRouteChange }) => {
   const [signInEmail, setSignInEmail] = useState('')
   const [signInPassword, setSignInPassword] = useState('')
+  const {
+    register,
+    handleSubmit,
+    watch,
+    setError,
+    formState: { errors },
+  } = useForm()
 
-  const onEmailChange = (e) => {
-    setSignInEmail(e.target.value)
-  }
-
-  const onPasswordChange = (e) => {
-    setSignInPassword(e.target.value)
-  }
-
-  const onSubmitSignIn = () => {
+  const onSubmitSignIn = (data) => {
+    const { email, password } = data
     const optionsSignIn = {
       url: '/api/signin',
       method: 'post',
       headers: { 'Content-Type': 'application/json' },
       data: {
-        email: signInEmail,
-        password: signInPassword,
+        email: email,
+        password: password,
       },
     }
 
@@ -37,17 +38,19 @@ const SignIn = ({ loadUser, onRouteChange }) => {
   return (
     <div className="login__form">
       <div className="login__form__container">
-        <form action="" className="form">
+        <form className="form" onSubmit={handleSubmit(onSubmitSignIn)}>
           <h2 className="mb-s">Sign In</h2>
           <div className="form__group">
             <label className="form__label">
               Email
               <input
                 type="email"
-                name="email-address"
-                id="email-address"
-                onChange={onEmailChange}
+                id="email"
                 className="form__input"
+                {...register('email', {
+                  required: true,
+                  pattern: /^([a-z0-9_.-]+)@([\da-z.-]+).([a-z.]{2,6})$/,
+                })}
               />
             </label>
 
@@ -55,23 +58,16 @@ const SignIn = ({ loadUser, onRouteChange }) => {
               Password
               <input
                 type="password"
-                name="password"
                 id="password"
-                onChange={onPasswordChange}
                 className="form__input"
+                {...register('password', { required: true })}
               />
             </label>
           </div>
+          <div className="form__submit">
+            <input type="submit" className="btn btn--blue" value="Sign In" />
+          </div>
         </form>
-        <div className="form__submit">
-          <button
-            onClick={onSubmitSignIn}
-            className="btn btn--blue"
-            type="submit"
-          >
-            Sign In
-          </button>
-        </div>
 
         <div className="mt-s">
           <p>Do you haven't an account yet?</p>
