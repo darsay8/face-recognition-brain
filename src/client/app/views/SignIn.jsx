@@ -1,8 +1,10 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link, Redirect } from 'react-router-dom'
+import useSecurity from '../hooks/useSecurity'
 import axios from 'axios'
 
-const SignIn = ({ loadUser, onRouteChange }) => {
+const SignIn = () => {
   const [signInEmail, setSignInEmail] = useState('')
   const [signInPassword, setSignInPassword] = useState('')
   const {
@@ -12,12 +14,14 @@ const SignIn = ({ loadUser, onRouteChange }) => {
     setError,
     formState: { errors },
   } = useForm()
+  const { login, isSignedIn } = useSecurity()
 
   const onSubmitSignIn = (data) => {
     const { email, password } = data
     const optionsSignIn = {
       url: '/api/signin',
       method: 'post',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       data: {
         email: email,
@@ -27,12 +31,18 @@ const SignIn = ({ loadUser, onRouteChange }) => {
 
     axios(optionsSignIn)
       .then((response) => response.data)
-      .then((user) => {
+      .then((data) => {
+        const user = data.signedUser
+        const token = data.accessToken
+        const auth = data.auth
         if (user.id) {
-          loadUser(user)
-          onRouteChange('home')
+          login(token, user, auth)
         }
       })
+  }
+
+  if (isSignedIn) {
+    return <Redirect to="/home" />
   }
 
   return (
@@ -71,12 +81,9 @@ const SignIn = ({ loadUser, onRouteChange }) => {
 
         <div className="mt-s">
           <p>Do you haven't an account yet?</p>
-          <p
-            onClick={() => onRouteChange('register')}
-            className="btn btn--text"
-          >
+          <Link to="register" className="btn btn--text">
             Register
-          </p>
+          </Link>
         </div>
       </div>
     </div>

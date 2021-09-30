@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
+import { Link, Redirect } from 'react-router-dom'
 import axios from 'axios'
 
 const Register = ({ loadUser, onRouteChange }) => {
@@ -83,9 +84,9 @@ const Register = ({ loadUser, onRouteChange }) => {
 
         <div className="mt-s">
           <p>Do you have an account already?</p>
-          <p onClick={() => onRouteChange('signin')} className="btn btn--text">
+          <Link to="/" className="btn btn--text">
             Sign In
-          </p>
+          </Link>
         </div>
       </div>
     </div>

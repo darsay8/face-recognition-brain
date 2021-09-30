@@ -1,4 +1,4 @@
-const handleRegister = (req, res, db, bcrypt) => {
+const handleRegister = (db, bcrypt, jwt) => (req, res) => {
   const { email, name, password } = req.body
 
   if (!email || !name || !password) {
@@ -22,7 +22,21 @@ const handleRegister = (req, res, db, bcrypt) => {
             joined: new Date(),
           })
           .then((user) => {
-            res.json(user[0])
+            const accessToken = jwt.sign(
+              { id: user[0].id },
+              process.env.TOKEN_SECRET
+            )
+            const signedUser = user[0]
+            // res.json(user[0])
+            res.json({
+              auth: true,
+              accessToken,
+              signedUser: {
+                id: signedUser.id,
+                name: signedUser.name,
+                email: signedUser.email,
+              },
+            })
           })
       })
       .then(trx.commit)

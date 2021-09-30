@@ -1,24 +1,34 @@
-const Navigation = ({ onRouteChange, isSignedIn }) => {
-  if (isSignedIn) {
-    return (
-      <nav className="navigation">
-        <p onClick={() => onRouteChange('signout')} className="btn btn--blue">
-          Sign Out
-        </p>
-      </nav>
-    )
-  } else {
-    return (
-      <nav className="navigation">
-        <p onClick={() => onRouteChange('signin')} className="btn btn--blue">
-          Sign In
-        </p>
-        <p onClick={() => onRouteChange('register')} className="btn btn--blue">
-          Register
-        </p>
-      </nav>
-    )
-  }
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom'
+import useSecurity from '../hooks/useSecurity'
+import useUser from '../hooks/useUser'
+
+const Navigation = () => {
+  const { logout, isSignedIn } = useSecurity()
+
+  return (
+    <nav className="nav">
+      <div className="navigation">
+        {isSignedIn ? (
+          <div>
+            {' '}
+            <button onClick={logout} className="btn btn--blue">
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <div>
+            <Link to="/" className="btn btn--blue">
+              Sign In
+            </Link>
+
+            <Link to="/register" className="btn btn--blue">
+              Register
+            </Link>
+          </div>
+        )}
+      </div>
+    </nav>
+  )
 }
 
 export default Navigation

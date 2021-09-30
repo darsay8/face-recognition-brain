@@ -1,4 +1,6 @@
-const Rank = ({ name, entries }) => {
+const Rank = ({ user }) => {
+  const { name, entries } = user
+
   const username = `${name.charAt(0).toUpperCase()}${name.slice(1)}`
 
   return (

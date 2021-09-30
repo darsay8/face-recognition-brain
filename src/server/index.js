@@ -3,8 +3,10 @@ const express = require('express')
 
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt-nodejs')
+const jwt = require('jsonwebtoken')
 
 const db = require('./db/database')
+const auth = require('./middleware/auth')
 
 const register = require('./controllers/register')
 const signin = require('./controllers/signin')
@@ -19,8 +21,7 @@ app.use(bodyParser.json())
 app.use(express.static('dist'))
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hello</h1>')
-  console.log(req.body)
+  res.send('hello')
 })
 
 app.get('/api/users', (req, res) => {
@@ -29,13 +30,13 @@ app.get('/api/users', (req, res) => {
     .then((user) => res.json(user))
 })
 
-app.post('/api/signin', signin.handleSignin(db, bcrypt))
+app.post('/api/signin', signin.handleSignin(db, bcrypt, jwt))
 
 app.post('/api/register', (req, res) => {
-  register.handleRegister(req, res, db, bcrypt)
+  register.handleRegister(req, res, db, bcrypt, jwt)
 })
 
-app.get('/api/profile/:id', (req, res) => {
+app.get('/api/profile/:id', auth, (req, res) => {
   profile.handleProfile(req, res, db)
 })
 
@@ -45,6 +46,10 @@ app.put('/api/image', (req, res) => {
 
 app.post('/api/image-url', (req, res) => {
   entries.handleApiCall(req, res)
+})
+
+app.get('*', (req, res) => {
+  res.send('sorry, nothing here((')
 })
 
 const { env } = process

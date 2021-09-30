@@ -1,4 +1,4 @@
-const FaceRecognition = ({ imageUrl, box }) => {
+const FaceRecognitionImage = ({ imageUrl, box }) => {
   return (
     <div className="face__recognition">
       <div className="face__recognition__all">
@@ -26,4 +26,4 @@ const FaceRecognition = ({ imageUrl, box }) => {
   )
 }
 
-export default FaceRecognition
+export default FaceRecognitionImage
